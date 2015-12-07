@@ -20,6 +20,6 @@ public class HelloController {
 		System.out.println("id="+user.getid_w());
 		System.out.println("name="+user.getname_w());
 		System.out.println(user.toString());
-		return new JsonResponse<>(user.getname_w());
+		return new JsonResponse<>(user.toString());
 	}
 }

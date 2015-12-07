@@ -19,4 +19,8 @@ public class User {
 	public String getname_w() {
 		return this.name_w;
 	}
+	@Override
+	public String toString(){
+		return "id_w = "+id_w+",name_w = "+name_w;
+	}
 }
