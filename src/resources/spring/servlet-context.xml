@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven>
+		
+		
+		<message-converters>
+			<beans:bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<beans:property name="supportedMediaTypes">
+					<beans:list>
+						<beans:value>application/json;charset=UTF-8</beans:value>
+					</beans:list>
+				</beans:property>
+				<beans:property name="objectMapper" ref="jsonObjectMapper"/>
+			</beans:bean>
+		</message-converters>
+	</annotation-driven>
+
+	<beans:bean id="jsonObjectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">
+		<beans:property name="dateFormat">
+			<beans:bean id="defaultDateFormat" class="java.text.SimpleDateFormat">
+				<beans:constructor-arg value="yyyy-MM-dd'T'HH:mm:ssZ"/>
+			</beans:bean>
+		</beans:property>
+	</beans:bean>
+
+	<context:component-scan base-package="com.walle.le.*"/>
+
+</beans:beans>

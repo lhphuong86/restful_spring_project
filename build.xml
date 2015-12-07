@@ -1,0 +1,65 @@
+<project name="restful_spring_project" basedir="." default="main">
+
+	<!-- deploy config -->
+    <property name="src.dir"     value="src"/>
+	<property name="resources.dir"     value="src/resources"/>
+	<property name="tmp.dir"     value="tmp"/>
+	<property name="lib.dir"  value="lib"/>
+	<property name="webapp.dir"  value="WebContent"/>
+	<property name="deploy.dir"  value="deploy"/>
+	<!-- classpath-->
+    <path id="classpath">
+	    <fileset dir="${lib.dir}" includes="**/*.jar"/>
+    </path>
+
+	<!-- clean -->
+    <target name="clean">
+     		<delete dir="${deploy.dir}"/>
+			<delete dir="${tmp.dir}"/>
+
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${tmp.dir}/classes"/>
+        <javac srcdir="${src.dir}" destdir="${tmp.dir}/classes" classpathref="classpath" encoding="utf-8"/>
+			
+    </target>
+	
+	
+	<target name="package" depends="clean,compile">
+	
+	
+		<echo> ########## starting package ########</echo>
+		<sleep milliseconds="5000"/>
+		
+		<mkdir dir="${deploy.dir}" />
+		<copy todir="${deploy.dir}" overwrite="true" verbose="true">
+			<fileset dir="${webapp.dir}">
+			</fileset>
+		
+		</copy>
+		
+		<mkdir dir="${deploy.dir}/WEB-INF/classes" />
+		<copy todir="${deploy.dir}/WEB-INF/classes" overwrite="true" verbose="true">
+			<fileset dir="${tmp.dir}/classes">
+			</fileset>
+		
+		</copy>
+		
+		<copy todir="${deploy.dir}/WEB-INF/classes" overwrite="true" verbose="true">
+			<fileset dir="${resources.dir}">
+			</fileset>
+		
+		</copy>
+		<copy todir="${deploy.dir}/WEB-INF/lib" overwrite="true" verbose="true">
+			<fileset dir="${lib.dir}">
+			</fileset>
+		
+		</copy>
+		<delete dir="${tmp.dir}"/>
+	</target>
+   
+
+    <target name="main" depends="package"/>
+
+</project>
