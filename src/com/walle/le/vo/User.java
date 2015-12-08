@@ -1,5 +1,7 @@
 package com.walle.le.vo;
 
+
+
 public class User {
 	private int id_w = 0;
 	private String name_w = "";

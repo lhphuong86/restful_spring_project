@@ -8,7 +8,7 @@
 package com.walle.le.json;
 
 /**
- * @author hun.
+ * @author walle.
  */
 public class JsonResponse<T> {
 	private JsonHeader header = new JsonHeader();

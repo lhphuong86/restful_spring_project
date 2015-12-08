@@ -8,10 +8,11 @@
 package com.walle.le.json;
 
 /**
- * @author hun
+ * @author Walle
  */
 public class JsonHeader {
 	private boolean isSuccessful = true;
+	
 	private int resultCode = 0;
 	private String resultMessage = "SUCCESS";
 
